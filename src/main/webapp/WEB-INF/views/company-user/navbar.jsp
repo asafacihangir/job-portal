@@ -27,7 +27,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <c:out value="${authenticatedAdmin}" />
+                        <c:out value="${currentUser.username}" />
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu animated fadeInUp">
