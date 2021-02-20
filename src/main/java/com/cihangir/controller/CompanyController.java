@@ -1,8 +1,12 @@
 package com.cihangir.controller;
 
 import com.cihangir.model.Company;
+import com.cihangir.model.User;
+import com.cihangir.security.UserService;
 import com.cihangir.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,14 +19,25 @@ public class CompanyController {
 
 	private final CompanyService companyService;
 
+	private final UserService userService;
+
 	@Autowired
-	public CompanyController(CompanyService companyService) {
+	public CompanyController(CompanyService companyService,
+			UserService userService) {
 		this.companyService = companyService;
+		this.userService = userService;
 	}
 
 
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public String showFormForAddBook() {
+	public String showMainPage(Model model) {
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByUserName(auth.getName());
+
+		model.addAttribute("currentUser", user);
+
+
 		return "company-user/company-user-profile";
 	}
 
@@ -58,6 +73,13 @@ public class CompanyController {
 		company.setUserId(5L);
 		companyService.saveCompany(company);
 		return "redirect:/company/company-list";
+	}
+
+	private void setCurrentUser(Model model){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		User user = userService.findUserByUserName(auth.getName());
+
+		model.addAttribute("currentUser", user.getUsername());
 	}
 
 
