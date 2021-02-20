@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>İş İlan Listesi</title>
+    <title>İş İlanlarım</title>
 
     <link rel="stylesheet" href="${contextPath}/resources/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${contextPath}/resources/jquery/css/jquery-ui.css">
@@ -24,7 +24,7 @@
 
 <div class="container table-responsive">
     <div class="row">
-        <a class="btn btn-info btn-xs pull-right" href="${contextPath}/jobs/showFormForAdd" >
+        <a class="btn btn-info btn-xs pull-right" href="${contextPath}/job-notices/showFormForAdd" >
             <span class="glyphicon glyphicon-plus-sign"></span>
         </a>
     </div>
@@ -32,43 +32,47 @@
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th>iş Tanımı</th>
-                <th>Şirket Adı</th>
+                <th>İş Tanım</th>
+                <th>Şirket</th>
                 <th>Pozisyon</th>
                 <th>Alınacak Kişi Sayısı</th>
-                <th>Full/Part-Time</th>
-                <th class="text-center">Operations</th>
+                <th>İstihdam Türü</th>
+                <th>Genel Nitelikler</th>
+                <th class="text-center">İşlemler</th>
             </tr>
             </thead>
             <tbody>
             <!-- loop over and print our books -->
-            <c:forEach items="${jobs}" var="job">
+            <c:forEach items="${jobNotices}" var="jobNotice">
 
                 <!-- construct an "update" link with book id -->
                 <c:url var="updateLink" value="${contextPath}/jobs/showFormForEdit">
-                    <c:param name="id" value="${job.id}" />
+                    <c:param name="id" value="${jobNotice.id}" />
                 </c:url>
 
                 <!-- construct an "delete" link with book id -->
                 <c:url var="deleteLink" value="${contextPath}/deleteJobs">
-                    <c:param name="id" value="${job.id}" />
+                    <c:param name="id" value="${jobNotice.id}" />
                 </c:url>
 
                 <tr>
                     <td>
-                        <c:out value="${job.job_title}" />
+                        <c:out value="${jobNotice.jobTitle}" />
                     </td>
                     <td>
-                        <c:out value="${job.company_name}" />
+                        <c:out value="${jobNotice.companyId}" />
                     </td>
                     <td>
-                        <c:out value="${job.position}" />
+                        <c:out value="${jobNotice.position}" />
                     </td>
                     <td>
-                        <c:out value="${job.numOfbeTaken}" />
+                        <c:out value="${jobNotice.numOfBeTaken}" />
                     </td>
                     <td>
-                        <c:out value="${job.type}" />
+                        <c:out value="${jobNotice.workType}" />
+                    </td>
+                    <td>
+                        <c:out value="${jobNotice.explanation}" />
                     </td>
                     <td class="text-center">
                         <a href="${updateLink}" class="btn btn-success btn-xs">

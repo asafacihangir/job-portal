@@ -21,7 +21,7 @@
                     <a href="${contextPath}/company/company-list">Şirket Bilgileri</a>
                 </li>
                 <li>
-                    <a href="${contextPath}/jobs/jobs-list">İş İlanlarım</a>
+                    <a href="${contextPath}/job-notices/jobs-list">İş İlanlarım</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

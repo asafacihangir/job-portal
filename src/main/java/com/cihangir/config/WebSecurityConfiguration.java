@@ -44,12 +44,15 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
 
+    http.headers().frameOptions().disable();
+
     http.
-        authorizeRequests()
+    authorizeRequests()
         .antMatchers("/").permitAll()
         .antMatchers("/login").permitAll()
         .antMatchers("/showCreateNewUser").permitAll()
         .antMatchers("/saveNewUser").permitAll()
+        .antMatchers("/h2-console/**").permitAll()
         .anyRequest()
         .authenticated().and().csrf().disable()
         .formLogin()

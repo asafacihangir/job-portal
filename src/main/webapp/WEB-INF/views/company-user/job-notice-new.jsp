@@ -27,25 +27,28 @@
             </div>
 
             <div class="panel-body">
-                <form:form class="form-horizontal" action="${pageContext.request.contextPath}/jobs/saveJobs" modelAttribute="newJobs">
+                <form:form class="form-horizontal" action="${pageContext.request.contextPath}/job-notices/saveJobNotice" modelAttribute="jobNotice">
                     <!-- need to associate this data with book id -->
                     <form:hidden path="id" />
                     <div class="form-group">
                         <label class="col-sm-4 col-md-3 col-lg-3 control-label">İş Tanımı</label>
                         <div class="col-sm-8 col-md-6 col-lg-5">
-                            <form:input type="text" class="form-control" id="job_title" path="job_title"/>
+                            <form:input type="text" class="form-control" id="jobTitle" path="jobTitle"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-4 col-md-3 col-lg-3 control-label">Şirket Adı</label>
+                        <label class="col-sm-4 col-md-3 col-lg-3 control-label">Şirket Seçimi</label>
                         <div class="col-sm-8 col-md-6 col-lg-5">
-                            <form:input type="text" class="form-control" id="company_name" path="company_name"/>
+                            <form:select path="companyId" class="form-control" required="true">
+                                <form:options items="${userCompanies}" itemLabel="title"
+                                              itemValue="id" />
+                            </form:select>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-4 col-md-3 col-lg-3 control-label">Position</label>
+                        <label class="col-sm-4 col-md-3 col-lg-3 control-label">Pozisyon</label>
                         <div class="col-sm-8 col-md-6 col-lg-5">
                             <form:input type="text" class="form-control" id="position" path="position"/>
                         </div>
@@ -54,14 +57,21 @@
                     <div class="form-group">
                         <label class="col-sm-4 col-md-3 col-lg-3 control-label">Alınacak Kişi Sayısı</label>
                         <div class="col-sm-8 col-md-6 col-lg-5">
-                            <form:input type="text" class="form-control" id="numOfbeTaken" path="numOfbeTaken"/>
+                            <form:input type="text" class="form-control" id="numOfBeTaken" path="numOfBeTaken"/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-4 col-md-3 col-lg-3 control-label">Full/Part Time</label>
+                        <label class="col-sm-4 col-md-3 col-lg-3 control-label">İstihdam Türü</label>
                         <div class="col-sm-8 col-md-6 col-lg-5">
-                            <form:input type="text" class="form-control" id="type" path="type"/>
+                            <form:input type="text" class="form-control" id="workType" path="workType"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-4 col-md-3 col-lg-3 control-label">Genel Nitelikler</label>
+                        <div class="col-sm-8 col-md-6 col-lg-5">
+                            <form:textarea type="text" class="form-control" id="explanation" path="explanation"/>
                         </div>
                     </div>
 

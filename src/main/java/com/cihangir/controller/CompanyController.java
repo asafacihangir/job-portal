@@ -31,13 +31,7 @@ public class CompanyController {
 
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String showMainPage(Model model) {
-
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userService.findUserByUserName(auth.getName());
-
-		model.addAttribute("currentUser", user);
-
-
+		setCurrentUser(model);
 		return "company-user/company-user-profile";
 	}
 
@@ -50,6 +44,7 @@ public class CompanyController {
 		Company theBook=new Company();
 
 		theModel.addAttribute("newCompany", theBook);
+		setCurrentUser(theModel);
 
 		return "company-user/new-company";
 	}
@@ -59,9 +54,12 @@ public class CompanyController {
 	@RequestMapping("/company-list")
 	public String getCompanyList(Model model) {
 
-		Iterable<Company> companies = companyService.findAllByUserId(null);
+
+		User currentUser = getCurrentUser();
+		Iterable<Company> companies = companyService.findAllByUserId(currentUser.getId());
 
 		model.addAttribute("companies", companies);
+		model.addAttribute("currentUser", currentUser);
 
 		return "company-user/company-list";
 	}
@@ -70,16 +68,21 @@ public class CompanyController {
 	@RequestMapping(value = "/saveCompany", method = RequestMethod.POST)
 	public String saveBook(@ModelAttribute("newCompany") Company company) {
 
-		company.setUserId(5L);
+		User currentUser = getCurrentUser();
+		company.setUserId(currentUser.getId());
 		companyService.saveCompany(company);
 		return "redirect:/company/company-list";
 	}
 
 	private void setCurrentUser(Model model){
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userService.findUserByUserName(auth.getName());
 
-		model.addAttribute("currentUser", user.getUsername());
+		User currentUser = getCurrentUser();
+		model.addAttribute("currentUser", currentUser);
+	}
+
+	private User getCurrentUser(){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		return userService.findUserByUserName(auth.getName());
 	}
 
 

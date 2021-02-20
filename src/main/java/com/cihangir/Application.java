@@ -6,7 +6,6 @@ import com.cihangir.model.User;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
@@ -26,7 +25,7 @@ public class Application implements CommandLineRunner {
 	@Override
 	public void run(String... strings) throws Exception {
 
-
+		/*
 		User user = new User();
 		user.setFirstname("Sefa");
 		user.setLastname("Cihangir");
@@ -36,6 +35,6 @@ public class Application implements CommandLineRunner {
 		user.setMail("cihangir@mail.com");
 		user.setActivated(true);
 
-		userRepository.save(user);
+		userRepository.save(user);*/
 	}
 }
