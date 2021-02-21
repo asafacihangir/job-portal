@@ -10,18 +10,18 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Seyahat Sistemi</a>
+            <a class="navbar-brand" href="#">İş Başvuru Sistemi</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="${contextPath}/admin/usermanagement">Anasayfa</a>
+                    <a href="${contextPath}/company/main">Anasayfa</a>
                 </li>
                 <li>
                     <a href="${contextPath}/company/company-list">Şirket Bilgileri</a>
                 </li>
                 <li>
-                    <a href="${contextPath}/job-notices/jobs-list">İş İlanlarım</a>
+                    <a href="${contextPath}/company/job-notices">İş İlanlarım</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -32,10 +32,10 @@
                     </a>
                     <ul class="dropdown-menu animated fadeInUp">
                         <li>
-                            <a href="${contextPath}/company-user/profile">Şirket Bilgileri</a>
+                            <a href="${contextPath}/company/showUserInfo">Kullanıcı Bilgileri</a>
                         </li>
                         <li>
-                            <a href="<c:url value="j_spring_security_logout" />">Logout</a>
+                            <a href="<c:url value="/logout" />">Çıkış Yap</a>
                         </li>
                     </ul>
                 </li>

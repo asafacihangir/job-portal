@@ -27,7 +27,7 @@
             </div>
 
             <div class="panel-body">
-                <form:form class="form-horizontal" action="${pageContext.request.contextPath}/job-notices/saveJobNotice" modelAttribute="jobNotice">
+                <form:form class="form-horizontal" action="${pageContext.request.contextPath}/company/job-notices/saveJobNotice" modelAttribute="jobNotice">
                     <!-- need to associate this data with book id -->
                     <form:hidden path="id" />
                     <div class="form-group">

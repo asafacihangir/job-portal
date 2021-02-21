@@ -24,12 +24,15 @@
 
 <div class="container table-responsive">
     <div class="row">
-        <a class="btn btn-info btn-xs pull-right" href="${contextPath}/job-notices/showFormForAdd" >
+        <a class="btn btn-info btn-sm pull-right" href="${contextPath}/company/job-notices/showFormForAdd" >
             <span class="glyphicon glyphicon-plus-sign"></span>
         </a>
     </div>
     <div class="row">
         <table class="table table-bordered">
+            <caption>
+               İş İlanlarım
+            </caption>
             <thead>
             <tr>
                 <th>İş Tanım</th>
@@ -38,6 +41,8 @@
                 <th>Alınacak Kişi Sayısı</th>
                 <th>İstihdam Türü</th>
                 <th>Genel Nitelikler</th>
+                <th>Başvuran Kişi Sayısı</th>
+                <th class="text-center">Başvuranları Listele</th>
                 <th class="text-center">İşlemler</th>
             </tr>
             </thead>
@@ -46,12 +51,19 @@
             <c:forEach items="${jobNotices}" var="jobNotice">
 
                 <!-- construct an "update" link with book id -->
-                <c:url var="updateLink" value="${contextPath}/job-notices/showFormForEdit">
+                <c:url var="showApplicantLink" value="${contextPath}/company/job-notices/showApplicants">
+                    <c:param name="id" value="${jobNotice.id}" />
+                </c:url>
+
+
+
+                <!-- construct an "update" link with book id -->
+                <c:url var="updateLink" value="${contextPath}/company/job-notices/showFormForEdit">
                     <c:param name="id" value="${jobNotice.id}" />
                 </c:url>
 
                 <!-- construct an "delete" link with book id -->
-                <c:url var="deleteLink" value="${contextPath}/job-notices/deleteJobs">
+                <c:url var="deleteLink" value="${contextPath}/company/job-notices/delete">
                     <c:param name="id" value="${jobNotice.id}" />
                 </c:url>
 
@@ -60,7 +72,7 @@
                         <c:out value="${jobNotice.jobTitle}" />
                     </td>
                     <td>
-                        <c:out value="${jobNotice.companyId}" />
+                        <c:out value="${jobNotice.company.title}" />
                     </td>
                     <td>
                         <c:out value="${jobNotice.position}" />
@@ -74,13 +86,21 @@
                     <td>
                         <c:out value="${jobNotice.explanation}" />
                     </td>
+                    <td>
+                        <c:out value="${jobNotice.jobApplies.size()}"/>
+                    </td>
+                    <td>
+                        <a href="${showApplicantLink}" class="btn btn-link">
+                            Göster
+                        </a>
+                    </td>
                     <td class="text-center">
-                        <a href="${updateLink}" class="btn btn-success btn-xs">
+                        <a href="${updateLink}" class="btn btn-success btn-sm">
                             <span class="glyphicon glyphicon-edit"></span>
                         </a>
                         <a href="${deleteLink}"
                            onclick="return confirm('Bu kitabı silmek istediğinize emin misiz?')"
-                           class="btn btn-danger btn-xs">
+                           class="btn btn-danger btn-sm">
                             <span class="glyphicon glyphicon-trash"></span>
                         </a>
                     </td>
