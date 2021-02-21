@@ -11,11 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional(readOnly = true)
-public class SimpleJobsService implements JobNoticeService {
+public class SimpleJobNoticeService implements JobNoticeService {
 
   private final JobNoticeRepository jobNoticeRepository;
 
-  public SimpleJobsService(JobNoticeRepository jobsRepository) {
+  public SimpleJobNoticeService(JobNoticeRepository jobsRepository) {
     this.jobNoticeRepository = jobsRepository;
   }
 
@@ -54,5 +54,12 @@ public class SimpleJobsService implements JobNoticeService {
   public void deleteBook(Long theId) {
     jobNoticeRepository.delete(theId);
   }
+
+
+  @Override
+  public Iterable<JobNotice> findAll() {
+    return jobNoticeRepository.findAll();
+  }
+
 
 }

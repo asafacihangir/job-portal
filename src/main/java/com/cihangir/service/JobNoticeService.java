@@ -19,4 +19,6 @@ public interface JobNoticeService {
     public JobNotice findOne(Long theId);
 
     public void deleteBook(Long theId);
+
+    Iterable<JobNotice> findAll();
 }
