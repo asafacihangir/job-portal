@@ -14,7 +14,9 @@ import com.cihangir.vm.ApplicantJobNoticeReportVM;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -124,6 +126,20 @@ public class ApplicantController {
     jobApplyRepository.save(jobApply);
 
     return "redirect:/applicant/job-notices";
+  }
+
+  @RequestMapping(value = "/showUserInfo", method = RequestMethod.GET)
+  public String showUserInfo(Model theModel) {
+
+    Map<String, String> userTypes = new HashMap<>();
+    userTypes.put("USER","İş Arayan");
+    userTypes.put("COMPANY_USER","İşveren");
+
+    theModel.addAttribute("userTypes", userTypes);
+    User theUser = getCurrentUser();
+    theModel.addAttribute("currentUser", theUser);
+
+    return "applicant/user-info";
   }
 
 

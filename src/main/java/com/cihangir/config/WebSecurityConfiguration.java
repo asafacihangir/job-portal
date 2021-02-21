@@ -52,6 +52,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         .antMatchers("/login").permitAll()
         .antMatchers("/showCreateNewUser").permitAll()
         .antMatchers("/saveNewUser").permitAll()
+        .antMatchers("/company/**").hasAuthority("COMPANY_USER")
+        .antMatchers("/applicant/**").hasAuthority("USER")
         .antMatchers("/h2-console/**").permitAll()
         .anyRequest()
         .authenticated().and().csrf().disable()

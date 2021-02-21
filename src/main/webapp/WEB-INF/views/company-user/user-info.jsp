@@ -18,22 +18,27 @@
 
 </head>
 <body>
-<br/><br/><br/>
+<jsp:include page="../company-user/navbar.jsp"/>
 <div class="row">
     <div class="col-lg-5 col-lg-offset-3">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <strong>Book Details</strong>
+                <strong>Kullanıcı Detayları</strong>
             </div>
 
             <div class="panel-body">
-                <form:form class="form-horizontal" action="${pageContext.request.contextPath}/saveNewUser" modelAttribute="newUser">
+                <form:form class="form-horizontal" action="${pageContext.request.contextPath}/updateUser" modelAttribute="currentUser">
                     <!-- need to associate this data with book id -->
                     <form:hidden path="id" />
+                    <form:hidden path="username"/>
+                    <form:hidden path="userType"/>
+                    <form:hidden path="activated"/>
+
+
                     <div class="form-group">
                         <label class="col-sm-4 col-md-3 col-lg-3 control-label">Kullanıcı Adı</label>
                         <div class="col-sm-8 col-md-6 col-lg-5">
-                            <form:input type="text" class="form-control" id="username" path="username"/>
+                            <form:input type="text" disabled="true" class="form-control" id="username" path="username"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -66,7 +71,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 col-md-3 col-lg-3 control-label">Kullanıcı Tipi</label>
                         <div class="col-sm-8 col-md-6 col-lg-5">
-                            <form:select path="userType" class="form-control" required="true">
+                            <form:select path="userType" class="form-control" required="true" disabled="true">
                                 <form:options items = "${userTypes}" />
                             </form:select>
 
@@ -76,7 +81,6 @@
                     <br/>
                     <div class="form-group">
                         <div class="col-sm-offset-4 col-md-offset-3 col-lg-offset-3 col-sm-8 col-md-9 col-lg-9">
-                            <button type="submit" class="btn btn-primary">Cancel</button>
                             <button type="submit" class="btn btn-primary">Kaydet</button>
                         </div>
                     </div>

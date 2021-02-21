@@ -32,10 +32,10 @@
                     </a>
                     <ul class="dropdown-menu animated fadeInUp">
                         <li>
-                            <a href="${contextPath}/company-user/profile">Kullanıcı Bilgileri</a>
+                            <a href="${contextPath}/applicant/showUserInfo">Kullanıcı Bilgileri</a>
                         </li>
                         <li>
-                            <a href="<c:url value="j_spring_security_logout" />">Çıkış Yap</a>
+                            <a href="<c:url value="/logout" />">Logout</a>
                         </li>
                     </ul>
                 </li>
