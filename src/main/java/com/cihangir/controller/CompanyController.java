@@ -1,6 +1,7 @@
 package com.cihangir.controller;
 
 import com.cihangir.model.Company;
+import com.cihangir.model.JobNotice;
 import com.cihangir.model.User;
 import com.cihangir.security.UserService;
 import com.cihangir.service.CompanyService;
@@ -12,6 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/company")
@@ -45,6 +49,19 @@ public class CompanyController {
 
 		theModel.addAttribute("newCompany", theBook);
 		setCurrentUser(theModel);
+
+		return "company-user/new-company";
+	}
+
+	@RequestMapping(value = "/showFormForEdit", method = RequestMethod.GET)
+	public String showFormForEditBook(@RequestParam("companyId") Long theId, Model theModel) {
+
+		// create model attribute to bind form data
+		Company jobNotice = companyService.findOne(theId);
+
+		//add theBook to the model
+		theModel.addAttribute("newCompany", jobNotice);
+		//theModel.addAttribute("userCompanies", companies);
 
 		return "company-user/new-company";
 	}

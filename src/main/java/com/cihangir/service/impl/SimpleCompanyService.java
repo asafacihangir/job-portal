@@ -51,5 +51,15 @@ public class SimpleCompanyService implements CompanyService {
 
   }
 
+  @Override
+  public void updateCompany(Company company) {
+    companyRepository.save(company);
+  }
+
+  @Override
+  public Company findOne(Long theId) {
+    return companyRepository.findOne(theId);
+  }
+
 
 }
