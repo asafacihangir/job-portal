@@ -1,6 +1,10 @@
 package com.cihangir.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -32,7 +36,6 @@ public class JobNotice {
     private Integer numOfBeTaken = 0;
 
 
-
     @NotBlank
     @Column(name = "workType", nullable = false)
     private String workType ;
@@ -41,6 +44,15 @@ public class JobNotice {
     @NotBlank
     @Column(name = "explanation", nullable = false)
     private String explanation ;
+
+    @ManyToOne
+    @NotFound(action = NotFoundAction.IGNORE)
+    @JoinColumn(name = "companyId", referencedColumnName = "id", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+    private Company company;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "jobNotice")
+    private List<JobApply> jobApplies = new ArrayList<>();
+
 
     public Long getId() {
         return id;
@@ -96,5 +108,21 @@ public class JobNotice {
 
     public void setExplanation(String explanation) {
         this.explanation = explanation;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public List<JobApply> getJobApplies() {
+        return jobApplies;
+    }
+
+    public void setJobApplies(List<JobApply> jobApplies) {
+        this.jobApplies = jobApplies;
     }
 }
