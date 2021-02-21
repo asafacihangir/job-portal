@@ -16,6 +16,8 @@
     <script src="${contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 
 
+
+
 </head>
 <body>
 <jsp:include page="../company-user/navbar.jsp"/>

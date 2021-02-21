@@ -23,7 +23,7 @@
     <div class="col-lg-5 col-lg-offset-3">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <strong>Book Details</strong>
+                <strong>Yeni Kullanıcı</strong>
             </div>
 
             <div class="panel-body">
@@ -76,7 +76,6 @@
                     <br/>
                     <div class="form-group">
                         <div class="col-sm-offset-4 col-md-offset-3 col-lg-offset-3 col-sm-8 col-md-9 col-lg-9">
-                            <button type="submit" class="btn btn-primary">Cancel</button>
                             <button type="submit" class="btn btn-primary">Kaydet</button>
                         </div>
                     </div>
