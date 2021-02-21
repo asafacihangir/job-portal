@@ -45,7 +45,7 @@
             <c:forEach items="${companies}" var="company">
 
                 <!-- construct an "update" link with book id -->
-                <c:url var="updateLink" value="${contextPath}/showFormForEdit">
+                <c:url var="updateLink" value="${contextPath}/company/showFormForEdit">
                     <c:param name="companyId" value="${company.id}" />
                 </c:url>
 

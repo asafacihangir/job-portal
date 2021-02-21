@@ -38,11 +38,14 @@ public class JobNoticesController {
   @RequestMapping(value = "/showFormForEdit", method = RequestMethod.GET)
   public String showFormForEditBook(@RequestParam("id") Long theId, Model theModel) {
 
+    List<Company> companies = companyService.findCompanyByCurrentUser();
+
     // create model attribute to bind form data
     JobNotice jobNotice = jobsService.findOne(theId);
 
     //add theBook to the model
     theModel.addAttribute("jobNotice", jobNotice);
+    theModel.addAttribute("userCompanies", companies);
 
     return "company-user/job-notice-new";
   }
@@ -84,7 +87,7 @@ public class JobNoticesController {
 
 
   @RequestMapping(value = "/saveJobNotice", method = RequestMethod.POST)
-  public String saveBook(@ModelAttribute("newJobs") JobNotice jobs) {
+  public String saveBook(@ModelAttribute("jobNotice") JobNotice jobs) {
     jobsService.saveJobs(jobs);
     return "redirect:/job-notices/jobs-list";
   }

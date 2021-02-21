@@ -46,12 +46,12 @@
             <c:forEach items="${jobNotices}" var="jobNotice">
 
                 <!-- construct an "update" link with book id -->
-                <c:url var="updateLink" value="${contextPath}/jobs/showFormForEdit">
+                <c:url var="updateLink" value="${contextPath}/job-notices/showFormForEdit">
                     <c:param name="id" value="${jobNotice.id}" />
                 </c:url>
 
                 <!-- construct an "delete" link with book id -->
-                <c:url var="deleteLink" value="${contextPath}/deleteJobs">
+                <c:url var="deleteLink" value="${contextPath}/job-notices/deleteJobs">
                     <c:param name="id" value="${jobNotice.id}" />
                 </c:url>
 
